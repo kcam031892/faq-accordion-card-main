@@ -1,0 +1,156 @@
+$breakpoints: (
+  desktop: 1440px,
+  mobile: 375px
+);
+
+$bgSoftViolet: hsl(273, 75%, 66%);
+$bgSoftBlue: hsl(240, 73%, 65%);
+$textVeryDarkDesaturatedBlue: hsl(238, 29%, 16%);
+$textSoftRed: hsl(14, 88%, 65%);
+$textVeryDarkGrayishBlue: hsl(237, 12%, 33%);
+$textDarkGrayishBlue: hsl(240, 6%, 50%);
+$dividerLightGrayishBlue: hsl(240, 5%, 91%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+body {
+  font-size: 12px;
+}
+
+@media (max-width: map-get($breakpoints,desktop)) {
+  .wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, $bgSoftViolet, $bgSoftBlue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .box {
+    width: 170px;
+    height: 170px;
+    position: absolute;
+    left: 205px;
+    top: 46.5%;
+    z-index: 9999;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .card {
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    height: clamp(70vh, 70vh, 70vh);
+    min-width: 60vw;
+    border-radius: 16px;
+    gap: 1rem;
+    overflow: hidden;
+    &__image {
+      position: relative;
+      width: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%) translateX(-70px);
+        height: auto;
+        z-index: 99;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url('../images/bg-pattern-desktop.svg');
+        background-repeat: no-repeat;
+        background-size: 77vw;
+        background-position: -741px -318px;
+        z-index: 1;
+      }
+    }
+    &__accordion {
+      width: 50%;
+      padding: 5rem 2rem;
+    }
+  }
+}
+
+.accordion {
+  &__title {
+    font-size: 2rem;
+    color: $textVeryDarkDesaturatedBlue;
+    margin-bottom: 1rem;
+  }
+  &__list {
+    list-style: none;
+    padding: 1rem 0;
+  }
+  &__item:not(:first-child) {
+    padding: 1rem 0;
+    border-bottom: 1px solid $dividerLightGrayishBlue;
+  }
+  &__item:first-child {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $dividerLightGrayishBlue;
+  }
+  &__item {
+    
+    &.active {
+      .accordion__panel {
+        max-height: 500px;
+        padding: 1rem 0;
+      }
+      .accordion__button {
+        color: $textVeryDarkDesaturatedBlue;
+        font-weight: bold;
+      }
+      .accordion__head img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+    img {
+      width: 8px;
+      height: 6px;
+      transition: all 0.2s linear;
+    }
+    button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: $textVeryDarkGrayishBlue;
+      transition: all .2s linear;
+    }
+  }
+  &__panel {
+    max-height: 0px;
+
+    // padding-top: 1rem;
+    color: $textDarkGrayishBlue;
+    line-height: 1.5;
+    font-size: 0.65rem;
+    overflow: hidden;
+    transition: all 0.2s linear;
+  }
+}
