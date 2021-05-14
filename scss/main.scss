@@ -22,7 +22,7 @@ body {
   font-size: 12px;
 }
 
-@media (max-width: map-get($breakpoints,desktop)) {
+@media (min-width: map-get($breakpoints,desktop)) {
   .wrapper {
     width: 100%;
     min-height: 100vh;
